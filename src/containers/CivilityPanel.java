@@ -1,6 +1,8 @@
 package containers;
 
 import java.awt.FlowLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +34,7 @@ public class CivilityPanel extends JPanel {
     /**
      * Constructor
      */
+    @SuppressWarnings("unchecked")
     public CivilityPanel() {
         civList = new JPanel();
         birthPanel = new JPanel();
@@ -56,6 +59,27 @@ public class CivilityPanel extends JPanel {
             years.add(i);
         }
         birthYear = new JComboBox(years.toArray());
+        birthYear.addItemListener((e)->{
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                System.out.println("La date choisie est : ");
+                System.out.println(((JComboBox)(e.getSource()))
+                        .getSelectedItem());                
+            }
+        });
+        birthDay.addItemListener((e)->{
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                System.out.println("La date choisie est : ");
+                System.out.println(((JComboBox)(e.getSource()))
+                        .getSelectedItem());                
+            }
+        });
+        birthMonth.addItemListener((e)->{
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                System.out.println("La date choisie est : ");
+                System.out.println(((JComboBox)(e.getSource()))
+                        .getSelectedItem());                
+            }
+        });
         createGUI();
     }
 
@@ -78,9 +102,12 @@ public class CivilityPanel extends JPanel {
             JRadioButton jb = new JRadioButton(civ);
             civGroup.add(jb); // Ajout au groupe
             civList.add(jb); // Ajout au JPanel
-            if (civ.equals("M.")) { // On préselectionne M.
-                jb.setSelected(true);
+            jb.addItemListener((e) -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                JRadioButton selectedButton = (JRadioButton) e.getSource();
+                System.out.println(selectedButton.getText());
             }
+            });
         }
         // Gestion de la date de naissance. On a 4 champs qui doivent s'aligner
         // à gauche, on utilise donc un JPanel muni d'un FlowLayout à gauche

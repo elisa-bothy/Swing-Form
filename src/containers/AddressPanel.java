@@ -24,6 +24,7 @@ public class AddressPanel extends JPanel {
     private void initGui() {
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
         this.setBorder(BorderFactory.createTitledBorder("Adresse"));
+        
         // Ajout des composant au panneau
         this.add(numPanel);
         this.add(ruePanel);

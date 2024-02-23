@@ -1,11 +1,16 @@
 package containers;
 
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class LanguagePanel extends JPanel {
+    static ImageIcon icon = new ImageIcon("images.jpeg");
 
     private static final long serialVersionUID = 1L;
 
@@ -43,6 +48,29 @@ public class LanguagePanel extends JPanel {
         for (String lang : LANGUAGES) {
             JCheckBox jc = new JCheckBox(lang); // Création des checkboxes
             this.add(jc);
+            jc.addItemListener((e)->{
+            if(e.getStateChange() == ItemEvent.DESELECTED){
+                System.out.println("déselection");
+             
+            }else{
+                System.out.println("sélection");
+                System.out.println(((JCheckBox) e.getSource()).getText());
+            }
+            if (((JCheckBox) e.getSource()).getText()== "Java SE" || ((JCheckBox) e.getSource()).getText()== "Java EE"){
+                SwingUtilities.invokeLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        JOptionPane.showMessageDialog(
+                    null, 
+                    "Vous avez eu l'immence honneur de séléctionner Java", 
+                    "Votre choix", 
+                    JOptionPane.PLAIN_MESSAGE,
+                    icon );
+                    }
+                });
+               
+            }
+        });
         }
     }
 
