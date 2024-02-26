@@ -2,7 +2,8 @@ package containers;
 
 import java.awt.FlowLayout;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,7 +31,7 @@ public class CivilityPanel extends JPanel {
     private final JComboBox birthDay, birthMonth, birthYear;
     private final ButtonGroup civGroup;
     private final JLabel birthLabel;
-
+    
     /**
      * Constructor
      */
@@ -58,25 +59,48 @@ public class CivilityPanel extends JPanel {
         for (int i = 1945; i <= LocalDate.now().getYear(); i++) {
             years.add(i);
         }
+        namePanel.getTextField().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                System.out.println(ke.getKeyChar());
+            }
+        });
+        fornamePanel.getTextField().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {}
+
+            @Override
+            public void keyPressed(KeyEvent ke) {}
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                System.out.println(ke.getKeyChar());
+            }
+        });
         birthYear = new JComboBox(years.toArray());
         birthYear.addItemListener((e)->{
             if(e.getStateChange() == ItemEvent.SELECTED){
-                System.out.println("La date choisie est : ");
-                System.out.println(((JComboBox)(e.getSource()))
-                        .getSelectedItem());                
+                System.out.println("Vous avez sélectionné "+((JComboBox)(e.getSource()))
+                        .getSelectedItem()); 
             }
         });
-        birthDay.addItemListener((e)->{
+        birthDay.addItemListener((e)->{;
             if(e.getStateChange() == ItemEvent.SELECTED){
-                System.out.println("La date choisie est : ");
-                System.out.println(((JComboBox)(e.getSource()))
-                        .getSelectedItem());                
+                System.out.println("Vous avez sélectionné "+((JComboBox)(e.getSource()))
+                        .getSelectedItem()); 
             }
         });
         birthMonth.addItemListener((e)->{
             if(e.getStateChange() == ItemEvent.SELECTED){
-                System.out.println("La date choisie est : ");
-                System.out.println(((JComboBox)(e.getSource()))
+                System.out.println("Vous avez sélectionné "+((JComboBox)(e.getSource()))
                         .getSelectedItem());                
             }
         });

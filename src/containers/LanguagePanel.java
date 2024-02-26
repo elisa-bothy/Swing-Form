@@ -49,12 +49,9 @@ public class LanguagePanel extends JPanel {
             JCheckBox jc = new JCheckBox(lang); // Création des checkboxes
             this.add(jc);
             jc.addItemListener((e)->{
-            if(e.getStateChange() == ItemEvent.DESELECTED){
-                System.out.println("déselection");
-             
-            }else{
-                System.out.println("sélection");
-                System.out.println(((JCheckBox) e.getSource()).getText());
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                String f =(((JCheckBox) e.getSource()).getText());
+                System.out.println("Vous avez utilisé "+f+" en le sélectionnant");
             }
             if (((JCheckBox) e.getSource()).getText()== "Java SE" || ((JCheckBox) e.getSource()).getText()== "Java EE"){
                 SwingUtilities.invokeLater(new Runnable(){
